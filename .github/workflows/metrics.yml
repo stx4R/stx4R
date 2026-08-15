@@ -1,0 +1,44 @@
+name: Metrics
+on:
+  schedule: [{cron: "0 0 * * *"}]
+  workflow_dispatch:
+  push: {branches: ["master", "main"]}
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+
+          # Default
+          user: stx4R
+          template: classic
+          base: header, activity, community, repositories, metadata
+          config_timezone: Asia/Seoul
+
+          # 1. 📅 Isometric commit calendar - Full Year calender
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          
+          # 2. 🈷️ Languages activity - Indepth analysis
+          plugin_languages: yes
+          plugin_languages_indepth: yes
+          plugin_languages_sections: most-used, recently-used
+          plugin_languages_details: bytes-size, percentage, lines
+          commits_authoring: Yijun Yoo, stx4R, suppuding@gmail.com
+          
+          # 3. 🎼 Music activity and suggestions - Random tracks
+          plugin_music: yes
+          plugin_music_mode: playlist
+          plugin_music_limit: 4
+          plugin_music_playlist: https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M
+          
+          # 4. 🕹️ Steam - Profile and detailed game history
+          plugin_steam: yes
+          plugin_steam_token: ${{ secrets.STEAM_TOKEN }}
+          plugin_steam_user: "76561199169384912"
+          plugin_steam_sections: player, most-played, recently-played
