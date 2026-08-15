@@ -1,3 +1,4 @@
 <div align="center">
-  <img src="github-metrics.svg" alt="GitHub Metrics" />
+  <img src="metrics.left.svg" width="49%" alt="Left Metrics" />
+  <img src="metrics.right.svg" width="49%" alt="Right Metrics" />
 </div>
