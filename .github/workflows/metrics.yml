@@ -1,6 +1,6 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 0 * * *"}]
+  schedule: [{cron: "0 1 * * *"}]
   workflow_dispatch:
   push: {branches: ["master", "main"]}
 
@@ -10,16 +10,15 @@ jobs:
     permissions:
       contents: write
     steps:
-      # 1. Left
-      - name: Left Side Metrics
+      - name: Languages Metrics
         uses: lowlighter/metrics@latest
         with:
-          filename: metrics.left.svg
+          filename: metrics.languages.svg
           token: ${{ secrets.METRICS_TOKEN }}
 
           user: stx4R
           template: classic
-          base: header, activity, community, repositories
+          base: "" 
           config_timezone: Asia/Seoul
           
           # 🈷️ Languages activity - Indepth analysis
@@ -28,6 +27,7 @@ jobs:
           plugin_languages_sections: most-used
           plugin_languages_details: bytes-size, percentage, lines
           commits_authoring: Yijun Yoo, stx4R, suppuding@gmail.com
+          
 
       # 2. Right
 #      - name: Right Side Metrics
@@ -56,4 +56,3 @@ jobs:
 #          plugin_steam: yes
 #          plugin_steam_token: ${{ secrets.STEAM_TOKEN }}
 #          plugin_steam_user: "76561199169384912"
-#          plugin_steam_sections: player, most-played, recently-played
