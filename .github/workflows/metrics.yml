@@ -30,30 +30,30 @@ jobs:
           commits_authoring: Yijun Yoo, stx4R, suppuding@gmail.com
 
       # 2. Right
-      - name: Right Side Metrics
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.right.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-
-          user: stx4R
-          template: classic
-          base: "" 
-          config_timezone: Asia/Seoul
-
-          # 📅 Isometric commit calendar - Full Year calender
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-          
-          # 🎼 Music activity and suggestions - Random tracks
-          plugin_music: yes
-          plugin_music_provider: spotify
-          plugin_music_mode: playlist
-          plugin_music_limit: 4
-          plugin_music_playlist: https://open.spotify.com/embed/playlist/5dQhWQgdrOhvchvtPAWWzC
-          
-          # 🕹️ Steam - Profile and detailed game history
-          plugin_steam: yes
-          plugin_steam_token: ${{ secrets.STEAM_TOKEN }}
-          plugin_steam_user: "76561199169384912"
-          plugin_steam_sections: player, most-played, recently-played
+#      - name: Right Side Metrics
+#        uses: lowlighter/metrics@latest
+#        with:
+#          filename: metrics.right.svg
+#          token: ${{ secrets.METRICS_TOKEN }}
+#
+#         user: stx4R
+#          template: classic
+#          base: "" 
+#          config_timezone: Asia/Seoul
+#
+#          # 📅 Isometric commit calendar - Full Year calender
+#          plugin_isocalendar: yes
+#          plugin_isocalendar_duration: full-year
+#          
+#          # 🎼 Music activity and suggestions - Random tracks
+#          plugin_music: yes
+#          plugin_music_provider: spotify
+#          plugin_music_mode: playlist
+#          plugin_music_limit: 4
+#          plugin_music_playlist: https://open.spotify.com/embed/playlist/5dQhWQgdrOhvchvtPAWWzC
+#          
+#          # 🕹️ Steam - Profile and detailed game history
+#          plugin_steam: yes
+#          plugin_steam_token: ${{ secrets.STEAM_TOKEN }}
+#          plugin_steam_user: "76561199169384912"
+#          plugin_steam_sections: player, most-played, recently-played
