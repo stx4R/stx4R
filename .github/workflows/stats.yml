@@ -8,7 +8,8 @@ on:
       - "github-stats/**"
       - ".github/workflows/stats.yml"
   schedule:
-    - cron: "5 0 * * *"
+    # 00:01 KST (UTC+9)
+    - cron: "1 15 * * *"
   workflow_dispatch:
 
 permissions:
