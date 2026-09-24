@@ -1,0 +1,77 @@
+name: Generate Stats Images
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "github-stats/**"
+      - ".github/workflows/stats.yml"
+  schedule:
+    - cron: "5 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stats
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash -euxo pipefail {0}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check ACCESS_TOKEN secret
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      run: |
+        if [ -z "${ACCESS_TOKEN}" ]; then
+          echo "::error::ACCESS_TOKEN repository secret is not set (classic PAT with read:user, user:email, repo)."
+          exit 1
+        fi
+
+    - uses: actions/checkout@v6
+
+    - uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29  # v2 tag
+      with:
+        version: 0.16.0
+
+    - name: Build
+      working-directory: github-stats
+      run: |
+        zig build
+
+    - name: Checkout generated branch
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        # Generated images live on the separate `generated` branch
+        git fetch origin generated
+        git worktree add -B generated generated origin/generated
+
+    - name: Generate images
+      working-directory: generated
+      run: |
+        ../github-stats/zig-out/bin/github-stats
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        EXCLUDE_REPOS: ${{ secrets.EXCLUDE_REPOS }}
+        EXCLUDE_LANGS: ${{ secrets.EXCLUDE_LANGS }}
+        EXCLUDE_PRIVATE: "false"
+        SILENT: "true"
+        # TODO: Remove this when they get their API working again
+        # https://github.com/orgs/community/discussions/192970
+        MAX_RETRIES: 5
+
+    - name: Commit to the repo
+      working-directory: generated
+      run: |
+        git add overview.svg languages.svg
+        # Force the build to succeed, even if no files were changed
+        git commit -m 'Update generated files' || true
+        git push origin generated
