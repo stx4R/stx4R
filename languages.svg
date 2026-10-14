@@ -134,19 +134,19 @@ div.ellipsis {
 <span class="progress">
 <span style="
   background-color: #e34c26; 
-  width: 34.639%;
+  width: 34.632%;
 " class="progress-item"></span><span style="
   background-color: #083fa1; 
-  width: 26.533%;
+  width: 26.528%;
 " class="progress-item"></span><span style="
   background-color: #3178c6; 
-  width: 19.392%;
+  width: 19.386%;
 " class="progress-item"></span><span style="
   background-color: #f1e05a; 
-  width: 16.132%;
+  width: 16.129%;
 " class="progress-item"></span><span style="
   background-color: #663399; 
-  width: 2.385%;
+  width: 2.384%;
 " class="progress-item"></span><span style="
   background-color: #ec915c; 
   width: 0.665%;
@@ -156,6 +156,9 @@ div.ellipsis {
 " class="progress-item"></span><span style="
   background-color: #C1F12E; 
   width: 0.023%;
+" class="progress-item"></span><span style="
+  background-color: #89e051; 
+  width: 0.022%;
 " class="progress-item"></span>
 </span>
 </div>
@@ -176,7 +179,7 @@ div.ellipsis {
       d="M8 4a4 4 0 100 8 4 4 0 000-8z"
   ></path></svg>
   <span class="lang">HTML</span>
-  <span class="percent">34.64%</span>
+  <span class="percent">34.63%</span>
 </li>
 <li style="animation-delay: 300ms;">
   <svg 
@@ -288,6 +291,22 @@ div.ellipsis {
       d="M8 4a4 4 0 100 8 4 4 0 000-8z"
   ></path></svg>
   <span class="lang">Batchfile</span>
+  <span class="percent">0.02%</span>
+</li>
+<li style="animation-delay: 1350ms;">
+  <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      class="octicon"
+      style="fill: #89e051;" 
+      viewBox="0 0 16 16" 
+      version="1.1" 
+      width="16" 
+      height="16"
+  ><path 
+      fill-rule="evenodd" 
+      d="M8 4a4 4 0 100 8 4 4 0 000-8z"
+  ></path></svg>
+  <span class="lang">Shell</span>
   <span class="percent">0.02%</span>
 </li>
 
